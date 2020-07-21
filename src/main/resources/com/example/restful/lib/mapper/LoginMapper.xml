@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace='com.example.restful.lib.mapper.LoginMapper'>
+
+	<select id="getUserRole" resultType="String">
+		SELECT
+			RoleId
+		FROM
+			[User]
+		WHERE
+			Email = #{email} AND
+			Password = #{password}
+	</select>
+
+</mapper>

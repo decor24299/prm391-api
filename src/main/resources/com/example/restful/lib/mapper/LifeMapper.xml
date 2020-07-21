@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace='com.example.restful.lib.mapper.LifeMapper'>
+
+	<select id="findAll" resultType="Life">
+		SELECT
+			Id,
+			Name
+		FROM
+			Life
+	</select>
+
+	<select id="findOne" resultType="Life">
+		SELECT
+			Id,
+			Name
+		FROM
+			Life
+		WHERE
+			Id = #{id}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO Life (
+			Name,
+			InsId,
+			InsTime
+		)
+		VALUES (
+			#{life.name},
+			1,
+			GETDATE()
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE Life
+		SET
+			Name = #{life.name}
+		WHERE Id = #{life.id}
+	</update>
+
+	<delete id="delete">
+		DELETE
+			Life
+		WHERE
+			Id = #{id}
+	</delete>
+
+</mapper>

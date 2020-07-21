@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace='com.example.restful.lib.mapper.ActorMapper'>
+
+	<select id="findAll" resultType="Actor">
+		SELECT
+			Id,
+			Name
+		FROM
+			Actor
+	</select>
+
+	<select id="findOne" resultType="Actor">
+		SELECT
+			Id,
+			Name,
+			Description,
+			Phone,
+			Email
+		FROM
+			Actor
+		WHERE
+			Id = #{id}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO Actor (
+			Name,
+			Description,
+			Phone,
+			Email,
+			InsId,
+			InsTime
+		)
+		VALUES (
+			#{actor.name},
+			#{actor.description},
+			#{actor.phone},
+			#{actor.email},
+			1,
+			GETDATE()
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE Actor
+		SET
+			Name = #{actor.name},
+			Description = #{actor.description},
+			Phone = #{actor.phone},
+			Email = #{actor.email},
+			UpdId = 1,
+			UpdTime = GETDATE()
+		WHERE Id = #{actor.id}
+	</update>
+
+	<delete id="delete">
+		DELETE
+			Actor
+		WHERE
+			Id = #{id}
+	</delete>
+
+</mapper>

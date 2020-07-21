@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace='com.example.restful.lib.mapper.ToolMapper'>
+
+	<select id="findAll" resultType="Actor">
+		SELECT
+			Id,
+			Name,
+			Description,
+			Quantity
+		FROM
+			Tool
+	</select>
+
+	<select id="findOne" resultType="Tool">
+		SELECT
+			Id,
+			Name,
+			Description,
+			Quantity,
+			StatusId
+		FROM
+			Tool
+		WHERE
+			Id = #{id}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO Tool (
+			Name,
+			Description,
+			Quantity,
+			StatusId,
+			InsId,
+			InsTime
+		)
+		VALUES (
+			#{tool.name},
+			#{tool.description},
+			#{tool.quantity},
+			#{tool.statusId},
+			1,
+			GETDATE()
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE Tool
+		SET
+			Name = #{tool.name},
+			Description = #{tool.description},
+			Quantity = #{tool.quantity},
+			StatusId = #{tool.statusId},
+			UpdId = 1,
+			UpdTime = GETDATE()
+		WHERE Id = #{tool.id}
+	</update>
+
+	<delete id="delete">
+		DELETE
+			Tool
+		WHERE
+			Id = #{id}
+	</delete>
+
+</mapper>
